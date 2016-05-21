@@ -17,10 +17,6 @@ module Apartment
 
     private
 
-      def multi_tenantify_with_tenant_db_name(config, tenant)
-        config[:url] = "#{config[:url].gsub(/(\S+)\/.+$/, '\1')}/#{environmentify(tenant)}"
-      end
-
       def create_tenant_command(conn, tenant)
         conn.create_database(environmentify(tenant), { :thisisahack => '' })
       end
